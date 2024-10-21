@@ -48,6 +48,6 @@ DaisyUI provides a lot of themes. Change to appropriate theme by modifying the t
 ## Resources
 - The FastHTML documentation at https://docs.fastht.ml/ provides comprehensive information on using the framework.
 - For LLM assisted development, add the file at https://docs.fastht.ml/llms-ctx.txt as context.
-- When converting DaisyUI or HTML code to FastHTML Python code, the converter tool at https://h2x.answer.ai/ can be helpful.
+- When converting DaisyUI or HTML code to FastHTML Python code, the converter tool at https://h2f.answer.ai/ can be helpful.
 
 > Note: This is a simple starter template and is not production ready. Use it as a starting point for your projects.
