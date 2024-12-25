@@ -1,4 +1,13 @@
-modules = ["python-3.11", "python-3.12"]
+modules = ["python-3.11"]
+run = "pip install -r requirements.txt && uvicorn main:app --reload"
 
 [nix]
 channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "pip install -r requirements.txt && uvicorn main:app --reload"]
+
+[[ports]]
+localPort = 8000
+externalPort = 80
+exposeLocalhost = true

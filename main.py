@@ -3,10 +3,12 @@ import json
 import copy
 
 from utils import *
+from pages.login import login_page
 from auth.loginHandler import loginHandler
 from pages.components.header import header_comp
 from pages.index import index_hero, index_page
-from pages.components.loginDialogIndex import login_form
+from pages.login import login_element, login_page
+from pages.console import console_component, console_page
 
 # Set up the app, including daisyui and tailwind for the chat component
 hdrs = (
@@ -31,7 +33,7 @@ hdrs = (
         """
     tailwind.config = {
       daisyui: {
-        themes: ["cupcake","black","business","dim","corporate","night","nord","dracula"],
+        themes: ["cupcake","black","business","dim","corporate","night","nord","dracula", "lofi"],
       },
 
     };
@@ -71,28 +73,31 @@ app, rt = fast_app(
 def index(session):
     return index_page(session)
 
+@rt("/login")
+def get(session):
+    return login_page(session)
 
-# login dialog on index page
-@rt("/login-dialog")
-def post_dialog():
-    return login_form()
-
-
-@rt("/close-login-dialog")
-def post_close_dialog(session):
-    return index_hero(session)
-
+@rt("/console")
+def get(session):
+    return console_page(session)
 
 @rt("/login")
 def post(session, email: str, password: str):
+    print(email, password)
     res = loginHandler(email, password)
     if res:
+        print("AAAAA")
         session["auth"] = True
         session["user"] = email
-        return index_hero(session), header_comp(session)
+        return Response(
+            "Redirecting...",
+            headers={"HX-Redirect": "/console"}
+        )
     else:
-        return RedirectResponse("/")
-
+        return Response(
+            "Redirecting...",
+            headers={"HX-Redirect": "/login"}
+        )
 
 @rt("/logout")
 def get(session):
