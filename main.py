@@ -68,42 +68,12 @@ app, rt = fast_app(
 )
 
 
-# The main screen
-@rt("/")
-def index(session):
-    return index_page(session)
+# Setup routes from modules
+from routes.auth import setup_auth_routes
+from routes.pages import setup_page_routes
 
-@rt("/login")
-def get(session):
-    return login_page(session)
-
-@rt("/console")
-def get(session):
-    return console_page(session)
-
-@rt("/login")
-def post(session, email: str, password: str):
-    print(email, password)
-    res = loginHandler(email, password)
-    if res:
-        print("AAAAA")
-        session["auth"] = True
-        session["user"] = email
-        return Response(
-            "Redirecting...",
-            headers={"HX-Redirect": "/console"}
-        )
-    else:
-        return Response(
-            "Redirecting...",
-            headers={"HX-Redirect": "/login"}
-        )
-
-@rt("/logout")
-def get(session):
-    print("logging out")
-    session.clear()
-    return RedirectResponse("/")
+setup_auth_routes(rt)
+setup_page_routes(rt)
 
 
 if __name__ == "__main__":
