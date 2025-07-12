@@ -4,8 +4,7 @@ This is a simple starter template for creating a webapps using FastAPI.
 
 ## Features
 - username based authentication and protected routes
-- DaisyUI and TailwindCSS for styling
-- Lucide icons
+- DaisyUI, TailwindCSS and Lucide icons for styling through MonsterUI
 
 
 ## Installation

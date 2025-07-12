@@ -1,4 +1,5 @@
 from fasthtml.common import *  # noqa
+from monsterui.all import *
 import json
 import copy
 
@@ -19,13 +20,6 @@ hdrs = (
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗂️</text></svg>",
         type="image/svg+xml",
     ),
-    Script(
-        src="https://cdn.tailwindcss.com?plugins=typography,aspect-ratio,container-queries"
-    ),
-    Link(
-        rel="stylesheet",
-        href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css",
-    ),
     # icons
     # Script(src="https://unpkg.com/lucide@latest"),
     # Script(
@@ -35,19 +29,11 @@ hdrs = (
     #     }, 50);
     #     """
     # ),
-    Script(
-        """
-    tailwind.config = {
-      daisyui: {
-        themes: ["cupcake","black","business","dim","corporate","night","nord","dracula", "lofi"],
-      },
-    };
-    document.title ="FastHTML Template";
-    """
-    ),
-    MarkdownJS(),
-    HighlightJS(langs=["python", "javascript", "html", "css"]),
+    
+    # MarkdownJS(),
+    # HighlightJS(langs=["python", "javascript", "html", "css"]),
 )
+hdrs = Theme.neutral.headers()
 
 
 # Auth middleware
